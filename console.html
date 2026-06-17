@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>EnamBelas.Dev</title>
+        <meta
+            name="description"
+            content="A small machine, booting. EnamBelas.Dev is coming soon."
+        />
+
+        <link rel="icon" type="image/png" sizes="16x16" href="./public/enambelas_favicon_16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="./public/enambelas_favicon_32x32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="./public/enambelas_favicon_48x48.png" />
+        <link rel="apple-touch-icon" sizes="192x192" href="./public/enambelas_favicon_192x192.png" />
+
+        <link
+            rel="stylesheet"
+            href="./dist/style2.css"
+        />
+    </head>
+
+    <body class="crt">
+        <div class="wrap">
+            <div class="bar">
+                <span class="dot"></span>
+                <img src="./public/enambelas_wordmark_white_512w.png" alt="EnamBelas.Dev" style="height: 14px;" />
+                <span class="sep"></span>
+                <span id="status">booting</span>
+                <span id="clock">--:--:--</span>
+            </div>
+
+            <div
+                class="scrollarea"
+                id="scrollarea"
+            >
+                <div
+                    class="screen"
+                    id="screen"
+                ></div>
+            </div>
+
+            <div class="dock" id="dock" hidden>
+                <div class="chips" id="chips">
+                    <button
+                        class="chip"
+                        data-cmd="about"
+                    >
+                        <b>about</b>
+                    </button>
+                    <button
+                        class="chip"
+                        data-cmd="apps"
+                    >
+                        <b>apps</b>
+                    </button>
+                    <button
+                        class="chip"
+                        data-cmd="status"
+                    >
+                        <b>status</b>
+                    </button>
+                    <button
+                        class="chip"
+                        data-cmd="contact"
+                    >
+                        <b>contact</b>
+                    </button>
+                    <button
+                        class="chip"
+                        data-cmd="help"
+                    >
+                        <b>help</b>
+                    </button>
+                    <button
+                        class="chip"
+                        data-cmd="exit"
+                    >
+                        <b>exit</b>
+                    </button>
+                </div>
+                <form
+                    class="prompt"
+                    id="form"
+                    autocomplete="off"
+                >
+                    <span class="ps1"
+                        >visitor@16<span
+                            class="path"
+                            >:~$</span
+                        ></span
+                    >
+                    <input
+                        class="input"
+                        id="input"
+                        type="text"
+                        placeholder="type a command, or tap a word above"
+                        aria-label="terminal input"
+                        spellcheck="false"
+                    />
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const screen =
+                document.getElementById("screen");
+            const scrollarea =
+                document.getElementById(
+                    "scrollarea",
+                );
+            const form =
+                document.getElementById("form");
+            const input =
+                document.getElementById("input");
+            const chips =
+                document.getElementById("chips");
+            const statusEl =
+                document.getElementById("status");
+            const clockEl =
+                document.getElementById("clock");
+            const reduce = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            ).matches;
+
+            const MARK =
+                " ___ _  _   _   __  __ \n| __| \\| | /_\\ |  \\/  |\n| _|| .` |/ _ \\| |\\/| |\n|___|_|\\_/_/ \\_\\_|  |_|\n                       \n ___ ___ _      _   ___ \n| _ ) __| |    /_\\ / __|\n| _ \\ _|| |__ / _ \\\\__ \\\n|___/___|____/_/ \\_\\___/";
+
+            function clock() {
+                const d = new Date();
+                clockEl.textContent =
+                    d.toLocaleTimeString(
+                        "en-GB",
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
+                        },
+                    );
+            }
+            clock();
+            setInterval(clock, 1000);
+
+            function el(cls, html) {
+                const d =
+                    document.createElement("div");
+                d.className = cls;
+                d.innerHTML = html;
+                screen.appendChild(d);
+                scrollarea.scrollTop =
+                    scrollarea.scrollHeight;
+                return d;
+            }
+            function sleep(ms) {
+                return new Promise((r) =>
+                    setTimeout(
+                        r,
+                        reduce ? 0 : ms,
+                    ),
+                );
+            }
+
+            // type a line out char by char
+            async function typeLine(
+                text,
+                cls = "line",
+                speed = 14,
+            ) {
+                const d = el(cls, "");
+                if (reduce) {
+                    d.textContent = text;
+                    return;
+                }
+                for (
+                    let i = 0;
+                    i < text.length;
+                    i++
+                ) {
+                    d.textContent += text[i];
+                    scrollarea.scrollTop =
+                        scrollarea.scrollHeight;
+                    await sleep(speed);
+                }
+            }
+
+            const COMMANDS = {
+                help() {
+                    return [
+                        [
+                            "line",
+                            "Available commands:",
+                        ],
+                        [
+                            "line dim",
+                            "  about      who is behind this",
+                        ],
+                        [
+                            "line dim",
+                            "  apps       what lives here",
+                        ],
+                        [
+                            "line dim",
+                            "  status     are we live yet?",
+                        ],
+                        [
+                            "line dim",
+                            "  contact    say hello",
+                        ],
+                        [
+                            "line dim",
+                            "  whoami     about you",
+                        ],
+                        [
+                            "line dim",
+                            "  clear      wipe the screen",
+                        ],
+                        [
+                            "line dim",
+                            "  exit       go back to the door",
+                        ],
+                    ];
+                },
+                about() {
+                    return [
+                        ["line", "EnamBelas.Dev"],
+                        [
+                            "line dim",
+                            "A single door to everything I build. Some of it",
+                        ],
+                        [
+                            "line dim",
+                            "serious, some of it just because I was curious.",
+                        ],
+                        ["line", "&nbsp;"],
+                        [
+                            "line dim",
+                            "This place is still being wired together.",
+                        ],
+                    ];
+                },
+                apps() {
+                    return [
+                        [
+                            "line",
+                            "Loading registry...",
+                        ],
+                        [
+                            "line brick b",
+                            "  [ nothing shipped here yet ]",
+                        ],
+                        [
+                            "line dim",
+                            "The first apps are still in the workshop.",
+                        ],
+                        [
+                            "line dim",
+                            'Run <span class="brick">status</span> to see where things stand.',
+                        ],
+                    ];
+                },
+                status() {
+                    return [
+                        ["line", "SYSTEM STATUS"],
+                        [
+                            "line dim",
+                            '  domain ....... <span class="bone b">online</span>',
+                        ],
+                        [
+                            "line dim",
+                            '  apps ......... <span class="brick b">coming soon</span>',
+                        ],
+                        [
+                            "line dim",
+                            '  mood ......... <span class="bone">stubbornly building</span>',
+                        ],
+                        ["line", "&nbsp;"],
+                        [
+                            "line dim",
+                            "Check back soon. It is closer than it looks.",
+                        ],
+                    ];
+                },
+                contact() {
+                    return [
+                        ["line", "Say hello:"],
+                        [
+                            "line dim",
+                            '  github ....... <a href="https://github.com/muhali16" target="_blank" rel="noopener">github.com/muhali16</a>',
+                        ],
+                        [
+                            "line dim",
+                            '  email ........ <a href="mailto:hello@enambelas.dev">hello@enambelas.dev</a>',
+                        ],
+                        [
+                            "line dim",
+                            "(edit these links in the file)",
+                        ],
+                    ];
+                },
+                whoami() {
+                    return [
+                        ["line", "visitor"],
+                        [
+                            "line dim",
+                            "Curious enough to type a command. I like you already.",
+                        ],
+                    ];
+                },
+                clear() {
+                    screen.innerHTML = "";
+                    return [];
+                },
+                ls() {
+                    return COMMANDS.apps();
+                },
+                async exit() {
+                    el("block", "");
+                    const seq = [
+                        ["line dim", "closing session..."],
+                        ["line dim", "saving state ................ ok"],
+                        ["line dim", "unmounting /apps ............ ok"],
+                        ["line dim", "goodbye."],
+                    ];
+                    for (const [cls, html] of seq) {
+                        el(cls, html);
+                        await sleep(reduce ? 0 : 300);
+                    }
+                    el("block", "");
+                    await sleep(reduce ? 0 : 700);
+                    window.location.href = "./index.html";
+                },
+            };
+
+            function render(rows) {
+                rows.forEach(([cls, html]) =>
+                    el(cls, html),
+                );
+            }
+
+            async function run(raw) {
+                const cmd = raw
+                    .trim()
+                    .toLowerCase();
+                el(
+                    "line",
+                    `<span class="ps1" style="display:inline">visitor@16<span class="path">:~$</span></span> <span class="bone">${escapeHtml(raw)}</span>`,
+                );
+                if (!cmd) {
+                    return;
+                }
+                if (COMMANDS[cmd]) {
+                    const result = COMMANDS[cmd]();
+                    if (result && typeof result.then === "function") {
+                        await result;
+                    } else if (result && result.length) {
+                        el("block", "");
+                        render(result);
+                        el("block", "");
+                    }
+                } else {
+                    el("block", "");
+                    el(
+                        "line brick",
+                        `command not found: ${escapeHtml(cmd)}`,
+                    );
+                    el(
+                        "line dim",
+                        'type <span class="brick">help</span> to see what works.',
+                    );
+                    el("block", "");
+                }
+            }
+
+            function escapeHtml(s) {
+                return s.replace(
+                    /[&<>"]/g,
+                    (c) =>
+                        ({
+                            "&": "&amp;",
+                            "<": "&lt;",
+                            ">": "&gt;",
+                            '"': "&quot;",
+                        })[c],
+                );
+            }
+
+            // boot sequence
+            async function boot() {
+                const seq = [
+                    [
+                        "line dim",
+                        "EnamBelas.Dev — bootloader v0.16",
+                    ],
+                    [
+                        "line dim",
+                        "initializing modules ......... ok",
+                    ],
+                    [
+                        "line dim",
+                        'mounting /apps ............... <span class="brick">pending</span>',
+                    ],
+                    [
+                        "line dim",
+                        "establishing identity ....... ok",
+                    ],
+                ];
+                for (const [cls, html] of seq) {
+                    el(cls, html);
+                    await sleep(reduce ? 0 : 240);
+                }
+                await sleep(reduce ? 0 : 300);
+
+                el("block", "");
+                const m = el("mark", "");
+                m.textContent = MARK;
+                el("block", "");
+
+                await typeLine(
+                    "A small machine, still booting.",
+                    "line",
+                    18,
+                );
+                await typeLine(
+                    "The apps are not online yet — but the door is open.",
+                    "line dim",
+                    12,
+                );
+
+                el("block", "");
+                el(
+                    "line",
+                    'Type <span class="brick">help</span> to look around. <span class="cursor"></span>',
+                );
+                el("block", "");
+
+                statusEl.textContent = "online";
+                statusEl.classList.add("bone");
+                document.getElementById(
+                    "dock",
+                ).hidden = false;
+                if (!("ontouchstart" in window))
+                    input.focus();
+            }
+
+            form.addEventListener(
+                "submit",
+                (e) => {
+                    e.preventDefault();
+                    const v = input.value;
+                    input.value = "";
+                    run(v);
+                },
+            );
+            chips.addEventListener(
+                "click",
+                (e) => {
+                    const b =
+                        e.target.closest(".chip");
+                    if (!b) return;
+                    run(b.dataset.cmd);
+                    if (
+                        !(
+                            "ontouchstart" in
+                            window
+                        )
+                    )
+                        input.focus();
+                },
+            );
+            document.addEventListener(
+                "keydown",
+                (e) => {
+                    const dock =
+                        document.getElementById(
+                            "dock",
+                        );
+                    if (
+                        !dock.hidden &&
+                        document.activeElement !==
+                            input &&
+                        e.key.length === 1
+                    ) {
+                        input.focus();
+                    }
+                },
+            );
+
+            boot();
+        </script>
+    </body>
+</html>

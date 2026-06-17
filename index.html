@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>EnamBelas.Dev</title>
+        <meta
+            name="description"
+            content="A single door to everything I build. Coming soon."
+        />
+
+        <link rel="icon" type="image/png" sizes="16x16" href="./public/enambelas_favicon_16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="./public/enambelas_favicon_32x32.png" />
+        <link rel="icon" type="image/png" sizes="48x48" href="./public/enambelas_favicon_48x48.png" />
+        <link rel="apple-touch-icon" sizes="192x192" href="./public/enambelas_favicon_192x192.png" />
+
+        <link rel="stylesheet" href="./dist/style.css" />
+    </head>
+
+    <body
+        class="flex min-h-screen flex-col font-sans text-ink antialiased selection:bg-ink selection:text-brick"
+    >
+        <header
+            class="relative z-10 flex items-center justify-between border-b-[3px] border-ink bg-ink px-4 py-3 md:px-8"
+        >
+            <img
+                src="./public/enambelas_wordmark_white_512w.png"
+                alt="EnamBelas.Dev"
+                class="h-4 md:h-5"
+            />
+            <span
+                class="font-mono text-xs font-bold text-ink"
+                id="clock"
+                >&mdash;</span
+            >
+        </header>
+
+        <main
+            class="relative flex flex-1 flex-col justify-center overflow-hidden px-4 py-10 md:px-8"
+        >
+            <span class="ghost16">16</span>
+
+            <p
+                class="reveal relative z-10 mb-8 max-w-xl font-mono text-sm font-bold leading-relaxed text-ink md:text-base"
+            >
+                A single door to everything I
+                build. Some of it serious, some of
+                it just because I was curious.
+            </p>
+
+            <h1 class="relative z-10 uppercase">
+                <span
+                    class="mega block reveal text-bone"
+                    >Enam</span
+                >
+                <span
+                    class="mega stroke block reveal"
+                    style="
+                        transition-delay: 0.08s;
+                    "
+                    >Belas</span
+                >
+            </h1>
+
+            <div
+                class="reveal relative z-10 mt-10 flex flex-col gap-6"
+                style="transition-delay: 0.16s"
+            >
+                <a
+                    href="./console.html"
+                    class="enter group inline-flex w-fit items-center gap-3 border-[3px] border-ink bg-bone px-6 py-3 font-mono text-sm font-bold uppercase tracking-widest text-ink md:text-base"
+                >
+                    <span
+                        class="h-2.5 w-2.5 bg-brick"
+                        aria-hidden="true"
+                    ></span>
+                    Open the door
+                    <span
+                        class="enter-arrow text-base leading-none"
+                        aria-hidden="true"
+                        >&rarr;</span
+                    >
+                </a>
+
+                <div
+                    class="flex flex-wrap items-center justify-between gap-4"
+                >
+                    <span
+                        class="inline-block bg-ink px-4 py-2 font-mono text-sm font-bold uppercase text-brick cursor"
+                        >Coming soon</span
+                    >
+                    <span
+                        class="font-mono text-xs font-bold text-ink"
+                        >EST. 2026 &middot;
+                        JAKARTA</span
+                    >
+                </div>
+            </div>
+        </main>
+
+        <div
+            class="relative z-10 overflow-hidden border-y-[3px] border-ink bg-ink py-3 text-brick"
+        >
+            <div
+                class="marquee text-lg font-black uppercase tracking-tight"
+            >
+                <span class="px-5"
+                    >Building in progress</span
+                ><span class="px-5 text-bone"
+                    >&#10022;</span
+                >
+                <span class="px-5"
+                    >Built to be used, not
+                    displayed</span
+                ><span class="px-5 text-bone"
+                    >&#10022;</span
+                >
+                <span class="px-5"
+                    >Building in progress</span
+                ><span class="px-5 text-bone"
+                    >&#10022;</span
+                >
+                <span class="px-5"
+                    >Built to be used, not
+                    displayed</span
+                ><span class="px-5 text-bone"
+                    >&#10022;</span
+                >
+                <span class="px-5"
+                    >Building in progress</span
+                ><span class="px-5 text-bone"
+                    >&#10022;</span
+                >
+                <span class="px-5"
+                    >Built to be used, not
+                    displayed</span
+                ><span class="px-5 text-bone"
+                    >&#10022;</span
+                >
+            </div>
+        </div>
+
+        <footer
+            class="relative z-10 flex flex-col gap-4 bg-bone px-4 py-8 md:flex-row md:items-end md:justify-between md:px-8"
+        >
+            <img
+                src="./public/enambelas_logo_primary_512w.png"
+                alt="EnamBelas.Dev"
+                class="h-16 w-auto self-start md:h-24"
+            />
+            <div
+                class="font-mono text-xs font-bold text-ink"
+            >
+                <p>&copy; 2026 EnamBelas.Dev</p>
+                <p class="mt-1 text-ash">
+                    Made stubbornly.
+                </p>
+            </div>
+        </footer>
+
+        <script>
+            const clock =
+                document.getElementById("clock");
+            function tick() {
+                const d = new Date();
+                clock.textContent =
+                    d.toLocaleTimeString(
+                        "en-GB",
+                        {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
+                        },
+                    );
+            }
+            tick();
+            setInterval(tick, 1000);
+
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((e) => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add(
+                                "in",
+                            );
+                            io.unobserve(
+                                e.target,
+                            );
+                        }
+                    });
+                },
+                { threshold: 0.12 },
+            );
+            document
+                .querySelectorAll(".reveal")
+                .forEach((el) => io.observe(el));
+        </script>
+    </body>
+</html>

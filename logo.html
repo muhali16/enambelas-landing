@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>enambelas.dev — Final Logo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
+    background: #F5F4F1;
+    color: #0F0F0F;
+    padding: 48px 24px;
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+  h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.03em; }
+  .subtitle { color: #666; font-size: 15px; margin-bottom: 40px; }
+
+  .section {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 24px;
+    border: 1px solid #EEE;
+  }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #FF6B1A;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  /* ============ Main Logo Component ============ */
+  .logo-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .binary-mark {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .bar {
+    width: 16px;
+    height: 36px;
+    border-radius: 2.5px;
+  }
+  .bar-orange { background: #FF6B1A; }
+  .bar-outline-dark { border: 2.5px solid #0F0F0F; }
+  .bar-outline-light { border: 2.5px solid #FFFFFF; }
+  .wordmark {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 64px;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .wordmark-light { color: #0F0F0F; }
+  .wordmark-dark { color: #FFFFFF; }
+  .period-accent { color: #FF6B1A; }
+
+  /* ============ Hero displays ============ */
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .hero-light, .hero-dark {
+    border-radius: 14px;
+    padding: 64px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+  .hero-light { background: #FAFAF8; border: 1px solid #EEE; }
+  .hero-dark { background: #0A0A0A; }
+
+  /* ============ Scale tests ============ */
+  .scale-tests {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .scale-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 48px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #F0F0F0;
+  }
+  .scale-row:last-child { border-bottom: none; }
+  .scale-label {
+    font-size: 11px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 8px;
+  }
+
+  /* Scaled versions */
+  .logo-100 .bar { width: 16px; height: 36px; }
+  .logo-100 .binary-mark { gap: 7px; }
+  .logo-100 .wordmark { font-size: 64px; }
+  .logo-100 .logo-stack { gap: 12px; }
+
+  .logo-75 .bar { width: 12px; height: 27px; border-radius: 2px; }
+  .logo-75 .binary-mark { gap: 5px; }
+  .logo-75 .wordmark { font-size: 48px; }
+  .logo-75 .logo-stack { gap: 9px; }
+  .logo-75 .bar-outline-dark { border-width: 2px; }
+
+  .logo-50 .bar { width: 8px; height: 18px; border-radius: 1.5px; }
+  .logo-50 .binary-mark { gap: 4px; }
+  .logo-50 .wordmark { font-size: 32px; }
+  .logo-50 .logo-stack { gap: 6px; }
+  .logo-50 .bar-outline-dark { border-width: 1.5px; }
+
+  .logo-25 .bar { width: 4px; height: 9px; border-radius: 1px; }
+  .logo-25 .binary-mark { gap: 2px; }
+  .logo-25 .wordmark { font-size: 16px; }
+  .logo-25 .logo-stack { gap: 3px; }
+  .logo-25 .bar-outline-dark { border-width: 1px; }
+
+  /* ============ Context mockups ============ */
+  .mockup-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Browser tab mockup */
+  .browser-mockup {
+    background: #FAFAF8;
+    border: 1px solid #EEE;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: white;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #E5E5E5;
+  }
+  .browser-dots { display: flex; gap: 4px; }
+  .browser-dot { width: 8px; height: 8px; border-radius: 50%; background: #DDD; }
+  .browser-url {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px;
+    color: #666;
+    margin-left: 8px;
+  }
+  .browser-favicon { margin-left: auto; }
+
+  /* Portfolio header mockup */
+  .portfolio-mockup {
+    background: #FAFAF8;
+    border: 1px solid #EEE;
+    border-radius: 12px;
+    padding: 32px;
+    min-height: 220px;
+  }
+  .portfolio-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #E5E5E5;
+  }
+  .portfolio-nav {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+  }
+  .portfolio-body {
+    padding-top: 32px;
+    color: #999;
+    font-size: 14px;
+  }
+
+  .mockup-label {
+    font-size: 10px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 12px;
+    text-align: center;
+  }
+
+  /* ============ Specs ============ */
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .spec-item {
+    background: #FAFAF8;
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid #EEE;
+  }
+  .spec-label {
+    font-size: 10px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .spec-value {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0F0F0F;
+  }
+  .color-chip {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 8px;
+    border: 1px solid #DDD;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>enambelas.</h1>
+  <p class="subtitle">Binary Sixteen mark + Plus Jakarta Sans 800 wordmark · stacked, left-aligned</p>
+
+  <!-- ============ MAIN HERO DISPLAY ============ -->
+  <div class="section">
+    <div class="section-title">Primary Logo</div>
+    <div class="hero-grid">
+      <div class="hero-light">
+        <div class="logo-stack logo-100">
+          <div class="binary-mark">
+            <div class="bar bar-orange"></div>
+            <div class="bar bar-outline-dark"></div>
+            <div class="bar bar-outline-dark"></div>
+            <div class="bar bar-outline-dark"></div>
+            <div class="bar bar-outline-dark"></div>
+          </div>
+          <div class="wordmark wordmark-light">enambelas<span class="period-accent">.</span></div>
+        </div>
+      </div>
+      <div class="hero-dark">
+        <div class="logo-stack logo-100">
+          <div class="binary-mark">
+            <div class="bar bar-orange"></div>
+            <div class="bar bar-outline-light"></div>
+            <div class="bar bar-outline-light"></div>
+            <div class="bar bar-outline-light"></div>
+            <div class="bar bar-outline-light"></div>
+          </div>
+          <div class="wordmark wordmark-dark">enambelas<span class="period-accent">.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SCALE TESTS ============ -->
+  <div class="section">
+    <div class="section-title">Scale Test · How it holds at different sizes</div>
+    <div class="scale-tests">
+      <div class="scale-row">
+        <div>
+          <div class="logo-stack logo-100">
+            <div class="binary-mark">
+              <div class="bar bar-orange"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+            </div>
+            <div class="wordmark wordmark-light">enambelas<span class="period-accent">.</span></div>
+          </div>
+          <div class="scale-label">100% · Hero size</div>
+        </div>
+        <div>
+          <div class="logo-stack logo-75">
+            <div class="binary-mark">
+              <div class="bar bar-orange"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+            </div>
+            <div class="wordmark wordmark-light">enambelas<span class="period-accent">.</span></div>
+          </div>
+          <div class="scale-label">75% · Header</div>
+        </div>
+      </div>
+
+      <div class="scale-row">
+        <div>
+          <div class="logo-stack logo-50">
+            <div class="binary-mark">
+              <div class="bar bar-orange"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+            </div>
+            <div class="wordmark wordmark-light">enambelas<span class="period-accent">.</span></div>
+          </div>
+          <div class="scale-label">50% · Email signature</div>
+        </div>
+        <div>
+          <div class="logo-stack logo-25">
+            <div class="binary-mark">
+              <div class="bar bar-orange"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+              <div class="bar bar-outline-dark"></div>
+            </div>
+            <div class="wordmark wordmark-light">enambelas<span class="period-accent">.</span></div>
+          </div>
+          <div class="scale-label">25% · Small footer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ IN CONTEXT MOCKUPS ============ -->
+  <div class="section">
+    <div class="section-title">In Context</div>
+    <div class="mockup-grid">
+      <div>
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <div class="browser-dots">
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+              <div class="browser-dot"></div>
+            </div>
+            <span class="browser-url">enambelas.dev</span>
+            <span class="browser-favicon">
+              <!-- Just binary mark as favicon -->
+              <svg width="16" height="16" viewBox="0 0 108 36" xmlns="http://www.w3.org/2000/svg">
+                <rect x="0" y="0" width="16" height="36" rx="2.5" fill="#FF6B1A"/>
+                <rect x="23" y="0" width="16" height="36" rx="2.5" fill="none" stroke="#0F0F0F" stroke-width="4"/>
+                <rect x="46" y="0" width="16" height="36" rx="2.5" fill="none" stroke="#0F0F0F" stroke-width="4"/>
+                <rect x="69" y="0" width="16" height="36" rx="2.5" fill="none" stroke="#0F0F0F" stroke-width="4"/>
+                <rect x="92" y="0" width="16" height="36" rx="2.5" fill="none" stroke="#0F0F0F" stroke-width="4"/>
+              </svg>
+            </span>
+          </div>
+          <div class="mockup-label">Browser tab dengan favicon (binary mark)</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="portfolio-mockup">
+          <div class="portfolio-header">
+            <div class="logo-stack" style="gap: 8px;">
+              <div class="binary-mark" style="gap: 4px;">
+                <div class="bar bar-orange" style="width: 8px; height: 18px;"></div>
+                <div class="bar bar-outline-dark" style="width: 8px; height: 18px; border-width: 1.5px;"></div>
+                <div class="bar bar-outline-dark" style="width: 8px; height: 18px; border-width: 1.5px;"></div>
+                <div class="bar bar-outline-dark" style="width: 8px; height: 18px; border-width: 1.5px;"></div>
+                <div class="bar bar-outline-dark" style="width: 8px; height: 18px; border-width: 1.5px;"></div>
+              </div>
+              <div class="wordmark wordmark-light" style="font-size: 24px;">enambelas<span class="period-accent">.</span></div>
+            </div>
+            <div class="portfolio-nav">
+              <span>work</span>
+              <span>about</span>
+              <span>contact</span>
+            </div>
+          </div>
+          <div class="portfolio-body">backend engineer · jakarta — building scalable systems thoughtfully...</div>
+          <div class="mockup-label">Portfolio website header layout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SPECS ============ -->
+  <div class="section">
+    <div class="section-title">Brand Specs</div>
+    <div class="specs-grid">
+      <div class="spec-item">
+        <div class="spec-label">Primary Color</div>
+        <div class="spec-value"><span class="color-chip" style="background: #FF6B1A;"></span>#FF6B1A · Orange</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Base Color</div>
+        <div class="spec-value"><span class="color-chip" style="background: #0F0F0F;"></span>#0F0F0F · Black</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Wordmark Font</div>
+        <div class="spec-value">Plus Jakarta Sans 800</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Letter Spacing</div>
+        <div class="spec-value">-0.05em (tight)</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Binary Mark</div>
+        <div class="spec-value">5 bars · 10000 (binary 16)</div>
+      </div>
+      <div class="spec-item">
+        <div class="spec-label">Stack Gap</div>
+        <div class="spec-value">~0.4× wordmark height</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="background: #FAFAF8;">
+    <p style="font-size: 14px; color: #444; line-height: 1.7;">
+      Logo final dalam berbagai size dan context. Test di hero size (untuk homepage), di favicon (16px masih readable karena binary mark stand-alone), di portfolio header, dan di scale 25% (untuk footer).
+      <br><br>
+      <strong style="color: #0F0F0F;">Yang bakal gue kirim sebagai files:</strong>
+      <br>1. <code style="background: white; padding: 2px 8px; border-radius: 4px; font-family: monospace;">enambelas_logo_primary.svg</code> — Full lockup untuk light backgrounds
+      <br>2. <code style="background: white; padding: 2px 8px; border-radius: 4px; font-family: monospace;">enambelas_logo_white.svg</code> — White version untuk dark backgrounds
+      <br>3. <code style="background: white; padding: 2px 8px; border-radius: 4px; font-family: monospace;">enambelas_favicon.svg</code> — Binary mark only (favicon)
+      <br>4. <code style="background: white; padding: 2px 8px; border-radius: 4px; font-family: monospace;">enambelas_wordmark_only.svg</code> — Wordmark only (untuk text contexts)
+    </p>
+  </div>
+
+</div>
+</body>
+</html>
