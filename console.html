@@ -6,37 +6,82 @@
             name="viewport"
             content="width=device-width, initial-scale=1.0"
         />
-        <title>Console — EnamBelas.Dev | Web Development by Enambelas</title>
+        <title>
+            Console — enambelas. | Web Development
+            by enambelas.
+        </title>
         <meta
             name="description"
             content="A small machine, booting. Console EnamBelas.Dev (enambelas) — web development studio dari Jakarta. Coming soon."
         />
-        <meta name="author" content="EnamBelas.Dev" />
-        <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href="https://enambelas.dev/console.html" />
-        <meta name="theme-color" content="#141210" />
+        <meta
+            name="author"
+            content="EnamBelas.Dev"
+        />
+        <meta
+            name="robots"
+            content="index, follow, max-image-preview:large"
+        />
+        <link
+            rel="canonical"
+            href="https://enambelas.dev/console.html"
+        />
+        <meta
+            name="theme-color"
+            content="#141210"
+        />
 
         <!-- Open Graph -->
-        <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="EnamBelas.Dev" />
-        <meta property="og:title" content="Console — EnamBelas.Dev" />
+        <meta
+            property="og:type"
+            content="website"
+        />
+        <meta
+            property="og:site_name"
+            content="EnamBelas.Dev"
+        />
+        <meta
+            property="og:title"
+            content="Console — EnamBelas.Dev"
+        />
         <meta
             property="og:description"
             content="A small machine, booting. EnamBelas.Dev — web development studio dari Jakarta."
         />
-        <meta property="og:url" content="https://enambelas.dev/console.html" />
+        <meta
+            property="og:url"
+            content="https://enambelas.dev/console.html"
+        />
         <meta
             property="og:image"
             content="https://enambelas.dev/public/og-image.png"
         />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-        <meta property="og:image:alt" content="EnamBelas.Dev — Web Development Studio" />
-        <meta property="og:locale" content="id_ID" />
+        <meta
+            property="og:image:width"
+            content="1200"
+        />
+        <meta
+            property="og:image:height"
+            content="630"
+        />
+        <meta
+            property="og:image:alt"
+            content="EnamBelas.Dev — Web Development Studio"
+        />
+        <meta
+            property="og:locale"
+            content="id_ID"
+        />
 
         <!-- Twitter / X -->
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Console — EnamBelas.Dev" />
+        <meta
+            name="twitter:card"
+            content="summary_large_image"
+        />
+        <meta
+            name="twitter:title"
+            content="Console — EnamBelas.Dev"
+        />
         <meta
             name="twitter:description"
             content="A small machine, booting. EnamBelas.Dev — web development studio dari Jakarta."
@@ -46,11 +91,33 @@
             content="https://enambelas.dev/public/og-image.png"
         />
 
-        <link rel="icon" type="image/png" sizes="16x16" href="./public/enambelas_favicon_16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="./public/enambelas_favicon_32x32.png" />
-        <link rel="icon" type="image/png" sizes="48x48" href="./public/enambelas_favicon_48x48.png" />
-        <link rel="apple-touch-icon" sizes="192x192" href="./public/enambelas_favicon_192x192.png" />
-        <link rel="manifest" href="./site.webmanifest" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="./public/enambelas_favicon_16x16.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="./public/enambelas_favicon_32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="48x48"
+            href="./public/enambelas_favicon_48x48.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="192x192"
+            href="./public/enambelas_favicon_192x192.png"
+        />
+        <link
+            rel="manifest"
+            href="./site.webmanifest"
+        />
 
         <link
             rel="stylesheet"
@@ -62,7 +129,11 @@
         <div class="wrap">
             <div class="bar">
                 <span class="dot"></span>
-                <img src="./public/enambelas_wordmark_white_512w.png" alt="EnamBelas.Dev" style="height: 14px;" />
+                <img
+                    src="./public/enambelas_wordmark_white_512w.png"
+                    alt="EnamBelas.Dev"
+                    style="height: 14px"
+                />
                 <span class="sep"></span>
                 <span id="status">booting</span>
                 <span id="clock">--:--:--</span>
@@ -354,18 +425,33 @@
                 async exit() {
                     el("block", "");
                     const seq = [
-                        ["line dim", "closing session..."],
-                        ["line dim", "saving state ................ ok"],
-                        ["line dim", "unmounting /apps ............ ok"],
+                        [
+                            "line dim",
+                            "closing session...",
+                        ],
+                        [
+                            "line dim",
+                            "saving state ................ ok",
+                        ],
+                        [
+                            "line dim",
+                            "unmounting /apps ............ ok",
+                        ],
                         ["line dim", "goodbye."],
                     ];
-                    for (const [cls, html] of seq) {
+                    for (const [
+                        cls,
+                        html,
+                    ] of seq) {
                         el(cls, html);
-                        await sleep(reduce ? 0 : 300);
+                        await sleep(
+                            reduce ? 0 : 300,
+                        );
                     }
                     el("block", "");
                     await sleep(reduce ? 0 : 700);
-                    window.location.href = "./index.html";
+                    window.location.href =
+                        "./index.html";
                 },
             };
 
@@ -387,10 +473,18 @@
                     return;
                 }
                 if (COMMANDS[cmd]) {
-                    const result = COMMANDS[cmd]();
-                    if (result && typeof result.then === "function") {
+                    const result =
+                        COMMANDS[cmd]();
+                    if (
+                        result &&
+                        typeof result.then ===
+                            "function"
+                    ) {
                         await result;
-                    } else if (result && result.length) {
+                    } else if (
+                        result &&
+                        result.length
+                    ) {
                         el("block", "");
                         render(result);
                         el("block", "");
