@@ -1,0 +1,278 @@
+/* JetBrains Mono Font */
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/jetbrains-mono/700.css';
+
+:root {
+    --bone: #ede9e0;
+    --ink: #141210;
+    --brick: #e63916;
+    --ash: #928c80;
+    --line: rgba(237, 233, 224, 0.14);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background: var(--ink);
+    color: var(--bone);
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+}
+
+/* subtle scanline + vignette: the "machine" atmosphere, kept very faint */
+.crt::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0px,
+        rgba(0, 0, 0, 0) 2px,
+        rgba(0, 0, 0, 0.045) 3px,
+        rgba(0, 0, 0, 0.045) 4px
+    );
+}
+
+.crt::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0) 55%,
+        rgba(0, 0, 0, 0.45) 100%
+    );
+}
+
+.wrap {
+    position: relative;
+    z-index: 6;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 22px;
+}
+
+/* top status bar */
+.bar {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 2px 12px;
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ash);
+    flex-shrink: 0;
+}
+
+.dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--brick);
+    box-shadow: 0 0 10px var(--brick);
+}
+
+.bar .sep {
+    flex: 1;
+}
+
+/* scroll region holds the whole conversation incl. prompt */
+.scrollarea {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 26px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--ash) transparent;
+}
+
+.scrollarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.scrollarea::-webkit-scrollbar-thumb {
+    background: var(--ash);
+}
+
+.screen {
+    padding: 0 2px;
+}
+
+.line {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.dim {
+    color: var(--ash);
+}
+
+.brick {
+    color: var(--brick);
+}
+
+.bone {
+    color: var(--bone);
+}
+
+.b {
+    font-weight: 700;
+}
+
+.block {
+    margin: 12px 0;
+}
+
+/* the big mark, drawn in ASCII so it belongs to the terminal world */
+.mark {
+    color: var(--brick);
+    font-weight: 700;
+    font-size: clamp(10px, 2.6vw, 15px);
+    line-height: 1.15;
+    letter-spacing: 0;
+    white-space: pre;
+    text-shadow: 0 0 18px rgba(230, 57, 22, 0.35);
+}
+
+/* docked input area */
+.dock {
+    flex-shrink: 0;
+    border-top: 1px solid var(--line);
+}
+
+/* prompt input row */
+.prompt {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 2px 22px;
+}
+
+.ps1 {
+    color: var(--brick);
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.ps1 .path {
+    color: var(--ash);
+    font-weight: 400;
+}
+
+.input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--bone);
+    font: inherit;
+    caret-color: var(--brick);
+}
+
+.input::placeholder {
+    color: var(--ash);
+    opacity: 0.6;
+}
+
+/* hint chips for mobile / discoverability */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 14px 2px 0;
+}
+
+.chip {
+    background: transparent;
+    color: var(--ash);
+    border: 1px solid var(--line);
+    border-radius: 0;
+    padding: 5px 11px;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.chip:hover,
+.chip:focus-visible {
+    color: var(--ink);
+    background: var(--bone);
+    border-color: var(--bone);
+    outline: none;
+}
+
+.chip b {
+    color: var(--brick);
+}
+
+.chip:hover b {
+    color: var(--ink);
+}
+
+a {
+    color: var(--brick);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(230, 57, 22, 0.4);
+}
+
+a:hover {
+    background: var(--brick);
+    color: var(--ink);
+    border-color: var(--brick);
+}
+
+.cursor {
+    display: inline-block;
+    width: 9px;
+    height: 1.05em;
+    background: var(--brick);
+    vertical-align: text-bottom;
+    animation: blink 1.05s steps(1) infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 560px) {
+    body {
+        font-size: 13.5px;
+    }
+
+    .bar {
+        font-size: 10px;
+        gap: 10px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cursor {
+        animation: none;
+    }
+}
