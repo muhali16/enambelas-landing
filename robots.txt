@@ -1,0 +1,7 @@
+# EnamBelas.Dev — allow all crawlers
+User-agent: *
+Allow: /
+
+# Block nothing sensitive here; build artifacts are fine to crawl.
+
+Sitemap: https://enambelas.dev/sitemap.xml

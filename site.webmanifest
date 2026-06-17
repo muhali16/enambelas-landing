@@ -1,0 +1,31 @@
+{
+    "name": "EnamBelas.Dev",
+    "short_name": "enambelas",
+    "description": "Web development studio dari Jakarta. A single door to everything I build.",
+    "lang": "id-ID",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#141210",
+    "theme_color": "#141210",
+    "icons": [
+        {
+            "src": "/public/enambelas_favicon_192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/public/enambelas_favicon_256x256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "/public/enambelas_favicon_512x512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ]
+}
