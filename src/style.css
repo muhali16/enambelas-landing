@@ -142,6 +142,15 @@ body {
 /* media: laptop + floating phone with 3D parallax on hover */
 .appshow-media {
     perspective: 1100px;
+    /* ponytail: pad so the floating phone (right:-4%, bottom:-10%)
+       stays inside the section instead of hugging the edge */
+    padding: 0 5% 9% 0;
+}
+
+@media (min-width: 900px) {
+    .appshow-media {
+        padding-bottom: 5%;
+    }
 }
 
 .stack {
