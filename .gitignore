@@ -4,8 +4,7 @@ package-lock.json
 yarn.lock
 
 # Build output
-dist/
-*.min.css
+# dist/ is committed on purpose: the VPS serves it via `git pull` (no build step on the server)
 *.min.js
 
 # IDE and editor
